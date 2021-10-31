@@ -1,6 +1,35 @@
 
 import ast
 myFile = open("countries.txt", "r")
+myResult = open("count.txt", "w")
+result = []
+myCountries = ast.literal_eval(myFile.readlines()[0])
+for i in range(6):
+    print(f"Is { myCountries[i]['CountryName']} a country ? ")
+    while(1):
+        print("Answer y/n")
+        ans = input().upper()
+        if(ans == "Y" or "N"):
+            break
+    if(ans == "Y"):
+        while(True):
+            print(f"Enter { myCountries[i]['CountryName']} Flag Url")
+            myCountries[i]["Flag"] = input()
+            print(f"Enter { myCountries[i]['CountryName']} Phone Code")
+            myCountries[i]["PhoneCode"] = input()
+            if(len(myCountries[i]["Flag"]) > 0 and len(myCountries[i]["PhoneCode"]) > 0):
+                break
+        result.append(myCountries[i])
+        print(
+            f"You added  { myCountries[i]['CountryName']} to the country list")
+    else:
+        print(f"Deleted {myCountries[i]['CountryName']}")
+myResult.write(str(result))
+"""
+
+
+import ast
+myFile = open("countries.txt", "r")
 lines = myFile.readlines()
 print(len(lines))
 newFile = open("coun.txt", "w")
@@ -43,5 +72,4 @@ datas.write(str(countries))
 print(i)
 for j in range(len(allcoun)):
     print(allcoun[j] + "\n")
-
-
+"""
